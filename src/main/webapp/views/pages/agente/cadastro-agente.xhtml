@@ -1,0 +1,33 @@
+<ui:composition template="/pages/template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Cadastro de Agentes</ui:define>
+
+	<ui:define name="corpo">
+		<h:form id="frmAgente">
+			<p:inputText value="#{agenteBean.agente.nome}" />
+			<p:calendar value="#{agenteBean.agente.dataContratacao}" />
+
+			<p:commandButton value="Chamar Bean" action="#{agenteBean.salva}" update=":frmAgente :tableAgentes"/>
+		</h:form>
+		
+		<p:dataTable id="tableAgentes" value="#{agenteBean.agentes}" var="agente">
+			<p:column headerText="ID">
+				<h:outputLabel value="#{agente.id}" />
+			</p:column>
+			<p:column headerText="Nome">
+				<h:outputLabel value="#{agente.nome}" />
+			</p:column>
+			<p:column headerText="Data de Contratação">
+				<h:outputLabel value="#{agente.dataContratacao}" >
+					<f:convertDateTime pattern="dd/MM/yyyy"/>
+				</h:outputLabel>
+			</p:column>
+		</p:dataTable>
+		
+	</ui:define>
+</ui:composition>
