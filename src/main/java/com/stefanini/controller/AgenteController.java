@@ -31,9 +31,22 @@ public class AgenteController {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public String salvarAgente(Agente agente) {
+	public void salvarAgente(Agente agente) {
 		agenteService.incluir(agente);
-		return "Agente cadastrado com sucesso!";
+	}
+
+	@Path("/delete")
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	public void excluir(Agente agente) {
+		agenteService.remove(agente);
+	}
+
+	@Path("/alterar")
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	public void alterar(Agente agente) {
+		agenteService.alterar(agente);
 	}
 
 }

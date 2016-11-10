@@ -20,4 +20,16 @@ public class AgenteRepository {
 		return this.manager.createQuery("from Agente", Agente.class).getResultList();
 	}
 
+	public void remover(Agente agente) {
+		this.manager.remove(agente);
+	}
+
+	public void alterar(Agente agente) {
+		this.manager.merge(agente);
+	}
+
+	public Agente buscar(int id) {
+		return manager.find(Agente.class, id);
+	}
+
 }

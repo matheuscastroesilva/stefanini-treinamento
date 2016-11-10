@@ -14,11 +14,12 @@ App.controller('AgenteCtrl', function($scope, AgenteService, $route,
 	});
 
 	$scope.cadastrar = function(agente) {
+
 		var data = {
 			nome : agente.nome,
 			tempoServico : agente.tempoServico,
 			dataContratacao : agente.dataContratacao
-		};
+		}
 
 		AgenteService.create(data).then(function(data) {
 			$location.path('/');
@@ -27,9 +28,8 @@ App.controller('AgenteCtrl', function($scope, AgenteService, $route,
 
 	$scope.agenteEditar = EnvioService.getParametro();
 
-	$scope.deletar = function(id) {
-		AgenteService.remove(id).then(function(data) {
-			console.log(data);
+	$scope.deletar = function(item) {
+		AgenteService.remove(item).then(function(data) {
 			$route.reload();
 		});
 	}
@@ -41,7 +41,7 @@ App.controller('AgenteCtrl', function($scope, AgenteService, $route,
 	}
 
 	$scope.atualizar = function(item) {
-		AgenteService.update(item, item.id).then(function(data) {
+		AgenteService.update(item).then(function(data) {
 			$location.path('/');
 		});
 	}

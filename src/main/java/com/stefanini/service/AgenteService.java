@@ -26,4 +26,25 @@ public class AgenteService {
 		return this.agenteRepository.todos();
 	}
 
+	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
+	public Agente pegaId(int id) {
+		return agenteRepository.buscar(id);
+	}
+
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void remove(Agente agente) {
+		agente = pegaId(agente.getId());
+		if (agente.getId() != null) {
+			this.agenteRepository.remover(agente);
+		}
+	}
+	
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void alterar(Agente agente) {
+		agente = pegaId(agente.getId());
+		if (agente.getId() != null) {
+			this.agenteRepository.alterar(agente);
+		}
+	}
+
 }

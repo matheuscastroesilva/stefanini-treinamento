@@ -1,16 +1,16 @@
-App.factory('AgenteService', function($http, API){
+App.factory('AgenteService', function($http, API) {
 	return {
-		list: function(){
-			return $http.get(API+'agente');
+		list : function() {
+			return $http.get(API + 'agente');
 		},
-		create: function(item){
-			return $http.post(API+'agente', item);
+		create : function(item) {
+			return $http.post(API + 'agente', item);
 		},
-		update: function(item, id){
-			return $http.put(API+'agente/'+id, item);	
+		update : function(item) {
+			return $http.put(API + 'agente/', item);
 		},
-		delete: function(id){
-			return $http.remove(API+'agente/'+id);
+		remove : function(item) {
+			return $http.post(API + 'agente/delete', item);
 		}
 	}
 })
