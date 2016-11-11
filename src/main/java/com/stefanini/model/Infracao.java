@@ -18,7 +18,8 @@ public class Infracao implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
-	private Agente agente;
+	private String agente;
+	private String placa;
 	private LocalInfracao local;
 	private TipoInfracao tipo;
 	private Veiculo veiculo;
@@ -32,16 +33,6 @@ public class Infracao implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	@ManyToOne
-	@JoinColumn(name = "agente_id")
-	public Agente getAgente() {
-		return agente;
-	}
-
-	public void setAgente(Agente agente) {
-		this.agente = agente;
 	}
 
 	@ManyToOne
@@ -80,6 +71,22 @@ public class Infracao implements Serializable {
 
 	public void setVelocidade(int velocidade) {
 		this.velocidade = velocidade;
+	}
+
+	public String getAgente() {
+		return agente;
+	}
+
+	public void setAgente(String agente) {
+		this.agente = agente;
+	}
+
+	public String getPlaca() {
+		return placa;
+	}
+
+	public void setPlaca(String placa) {
+		this.placa = placa;
 	}
 
 }

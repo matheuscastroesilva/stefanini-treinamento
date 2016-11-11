@@ -20,12 +20,18 @@ public class InfracaoRepository {
 		this.manager.merge(infracao);
 	}
 
+	public void remove(Infracao infracao) {
+		this.manager.remove(infracao);
+	}
+
 	public Infracao busca(Long id) {
 		return this.manager.find(Infracao.class, id);
 	}
 
-	public List<Infracao> lista() {
-		return this.manager.createQuery("select l from infracao l", Infracao.class).getResultList();
+
+	public List<Infracao> todos() {
+		return this.manager.createQuery("select i from Infracao i", Infracao.class).getResultList();
 	}
+
 
 }

@@ -8,14 +8,28 @@
 	<ui:define name="titulo">Cadastro de Agentes</ui:define>
 
 	<ui:define name="corpo">
-		<h:form id="frmAgente">
-			<p:inputText value="#{agenteBean.agente.nome}" />
-			<p:calendar value="#{agenteBean.agente.dataContratacao}" />
-
-			<p:commandButton value="Chamar Bean" action="#{agenteBean.salva}" update=":frmAgente :tableAgentes"/>
+		<h:form id="fmAgente">
+			<p:panelGrid columns="2">
+				<p:outputLabel value="Nome: " />
+				<p:inputText value="#{agenteBean.agente.nome}" />
+				<p:outputLabel value="Data da Contratação" />
+				<p:calendar value="#{agenteBean.agente.dataContratacao}" />
+			</p:panelGrid>
+			<p:commandButton value="Salvar" icon="ui-icon-disk"
+				action="#{agenteBean.salva}" update=":fmAgente :tableAgentes" />
 		</h:form>
-		
-		<p:dataTable id="tableAgentes" value="#{agenteBean.agentes}" var="agente">
+
+		<p:dataTable id="tableAgentes" value="#{agenteBean.agentes}"
+			var="agente">
+			<p:column>
+				<p:commandButton icon="ui-icon-pencil" id="btEdita"	onclick="PF('dlg2').show()" update="fmDialog">
+					<f:setPropertyActionListener target="#{agenteBean.agente}"	value="#{agente}" />
+				</p:commandButton>
+				
+				<p:commandButton icon="ui-icon-closethick" id="btCancela" action="#{agenteBean.remover()}" update="tableAgentes">
+					<f:setPropertyActionListener target="#{agenteBean.agente}"	value="#{agente}" />
+				</p:commandButton>
+			</p:column>
 			<p:column headerText="ID">
 				<h:outputLabel value="#{agente.id}" />
 			</p:column>
@@ -23,11 +37,26 @@
 				<h:outputLabel value="#{agente.nome}" />
 			</p:column>
 			<p:column headerText="Data de Contratação">
-				<h:outputLabel value="#{agente.dataContratacao}" >
-					<f:convertDateTime pattern="dd/MM/yyyy"/>
+				<h:outputLabel value="#{agente.dataContratacao}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
 				</h:outputLabel>
 			</p:column>
 		</p:dataTable>
-		
+
+		<p:dialog header="Atualizar Agente" widgetVar="dlg2" modal="true"
+			height="150" width="400">
+			<h:form id="fmDialog">
+				<p:panelGrid columns="2">
+					<p:outputLabel value="Nome: " />
+					<p:inputText value="#{agenteBean.agente.nome}" />
+					<p:outputLabel value="Data da Contratação" />
+					<p:calendar value="#{agenteBean.agente.dataContratacao}" />
+				</p:panelGrid>
+
+				<p:commandButton value="Salvar" icon="ui-icon-disk"
+					action="#{agenteBean.atualizar()}" update="fmAgente" />
+			</h:form>
+		</p:dialog>
+
 	</ui:define>
 </ui:composition>

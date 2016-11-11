@@ -10,16 +10,20 @@
 			<h:form>
 				<p:outputLabel value="Cadastrar Local infração" />
 				<p:panelGrid columns="2">
-				
+
 					<p:outputLabel value="Descrição Local: " for="desc" />
-					<p:inputText id="desc" value="#{localInfracaoBean.local.descricaoLocalInfracao}" />
-					
+					<p:inputText id="desc"
+						value="#{localInfracaoBean.local.descricaoLocalInfracao}" />
+
 					<p:outputLabel value="Velocidade permitida: " for="vel" />
-					<p:inputText id="vel" value="#{localInfracaoBean.local.velocidadePermitida}" />
+					<p:inputText id="vel"
+						value="#{localInfracaoBean.local.velocidadePermitida}" />
 				</p:panelGrid>
 				<br />
-				<p:commandButton value="Cadastrar" action="#{localInfracaoBean.cadastrar()}" />
+				<p:commandButton value="Cadastrar"
+					action="#{localInfracaoBean.cadastrar()}" icon="ui-icon-disk" />
 			</h:form>
+			
 		</p:panel>
 	</ui:define>
 </ui:composition>

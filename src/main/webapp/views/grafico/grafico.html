@@ -1,17 +1,13 @@
-<!DOCTYPE html>
 <html>
 <head>
-<title>Detran-DF</title>
-<meta charset="utf-8">
-<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+
 </head>
-<body ng-app="App">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div ng-view></div>
-			</div>
-		</div>
+<body>
+	<h1>Grafico</h1>
+
+	<div ng-controller="AgenteCtrl">
+		<div fusioncharts width="600" height="400" type="column2d"
+			dataSource=""></div>
 	</div>
 	<script src="bower_components/angular/angular.min.js"></script>
 	<script src="bower_components/angular-route/angular-route.min.js"></script>
@@ -21,4 +17,5 @@
 	<script src="js/agente/agenteController.js"></script>
 	<script src="js/agente/agenteService.js"></script>
 </body>
+
 </html>

@@ -25,11 +25,13 @@
 					</p:selectOneMenu>
 					
 					<p:outputLabel value="Placa:" for="placa" />
-					<p:inputText value="#{veiculoBean.veiculo.placa}" id="placa" />
+					<p:inputNumber value="#{veiculoBean.veiculo.placa}" id="placa" />
 				</p:panelGrid>
 				
 				<p:commandButton value="Cadastrar" action="#{veiculoBean.salva}" />
 			</h:form>
 		</p:panel>
+		
+		
 	</ui:define>
 </ui:composition>

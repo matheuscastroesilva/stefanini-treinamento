@@ -38,13 +38,12 @@ public class AgenteService {
 			this.agenteRepository.remover(agente);
 		}
 	}
-	
+
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void alterar(Agente agente) {
-		agente = pegaId(agente.getId());
-		if (agente.getId() != null) {
-			this.agenteRepository.alterar(agente);
-		}
+
+		this.agenteRepository.alterar(agente);
+
 	}
 
 }

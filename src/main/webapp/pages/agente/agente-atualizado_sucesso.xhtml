@@ -5,13 +5,14 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-
 	<ui:define name="titulo"></ui:define>
 
 	<ui:define name="corpo">
 		<h:form>
-			<p:chart type="pie" model="#{localInfracaoBean.graficoPizza}" style="width:400px;height:300px" />
-		</h:form>
+			<h1>Agente #{agenteBean.agente.nome} atualizado com sucesso</h1>
 
+			<p:commandButton action="#{agenteBean.novoAgente}"
+				value="Inserir novo registro" icon="ui-icon-document" />
+		</h:form>
 	</ui:define>
 </ui:composition>

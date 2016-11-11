@@ -5,39 +5,43 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-	<ui:define name="titulo">Cadastro de Modelos de Veeiculos</ui:define>
+	<ui:define name="titulo">Cadastramento de Modelos</ui:define>
 
 	<ui:define name="corpo">
 		<h:form id="frmModeloVeiculo">
-			<p:panelGrid columns="2">
-				<h:panelGroup >
-					<p:outputLabel for="categoria" value="Descrição do Modelo do Veículo" />
-					<p:inputTextarea value="#{modeloBean.modelo.descricao}"/>
-				</h:panelGroup>
+		<p:outputLabel for="categoria"
+					value="Descrição do Modelo" />
+			<p:panelGrid columns="1">
+
 				
-				<h:panelGroup>					
-					<p:selectOneMenu id="categoria" value="#{modeloBean.modelo.categoria}">
-						<f:selectItem itemLabel="Selecione Categoria" noSelectionOption="true"/>
-						<f:selectItems value="#{modeloBean.categorias}" var="categoria" itemLabel="#{categoria}" itemValue="#{categoria}"/>
+				<p:inputTextarea value="#{modeloBean.modelo.descricao}" />
+				<p:panelGrid>
+					<p:selectOneMenu id="categoria"
+						value="#{modeloBean.modelo.categoria}">
+						<f:selectItem itemLabel="Selecione Categoria"	noSelectionOption="true" />
+						<f:selectItems value="#{modeloBean.categorias}" var="categoria"
+							itemLabel="#{categoria}" itemValue="#{categoria}" />
 					</p:selectOneMenu>
-				</h:panelGroup>
+				</p:panelGrid>
 			</p:panelGrid>
-			
+
 			<br />
-			<p:commandButton value="Salvar modelo de veiculo" action="#{modeloBean.salva}" update=":frmModeloVeiculo :tableModeloVeiculo"/>
+			<p:commandButton value="Salvar" action="#{modeloBean.salva}"
+				update=":frmModeloVeiculo :tableModeloVeiculo" />
 		</h:form>
-		
-		<p:dataTable id="tableModeloVeiculo" value="#{modeloBean.modelos}" var="modelo">
+
+		<p:dataTable id="tableModeloVeiculo" value="#{modeloBean.modelos}"
+			var="md">
 			<p:column headerText="ID">
-				<h:outputLabel value="#{modelo.id}" />
+				<h:outputLabel value="#{md.id}" />
 			</p:column>
-			<p:column headerText="Nome">
-				<h:outputLabel value="#{modelo.descricao}" />
+			<p:column headerText="Descrição">
+				<h:outputLabel value="#{md.descricao}" />
 			</p:column>
 			<p:column headerText="Categoria">
-				<h:outputLabel value="#{modelo.categoria}" />
+				<h:outputLabel value="#{md.categoria}" />
 			</p:column>
 		</p:dataTable>
-		
+
 	</ui:define>
 </ui:composition>

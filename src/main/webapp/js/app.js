@@ -20,6 +20,10 @@ App.config(function($routeProvider){
 		templateUrl: 'views/agente/editarAgente.html',
 		controller: 'AgenteCtrl'
 	})
+	.when('/grafico', {
+		templateUrl: 'views/grafico/grafico.html',
+		controller: 'AgenteCtrl'
+	})
 });
 
 App.value('API', 'http://localhost:8080/primefaces-app/service/');

@@ -49,9 +49,12 @@ public class InfracaoBean implements Serializable {
 	private Long localId;
 	private Long tipoId;
 	private Long veiculoId;
+	private String nmAgente;
 
 	@PostConstruct
 	public void init() {
+		infracoes = infracaoService.todos();
+
 		if (this.locais.isEmpty()) {
 			locais = localService.lista();
 		}
@@ -67,6 +70,26 @@ public class InfracaoBean implements Serializable {
 		if (this.veiculos.isEmpty()) {
 			veiculos = veiculoService.todos();
 		}
+
+	}
+
+	public String atualizar() {
+		infracaoService.alterar(infracao);
+		
+		return "infracao-atualizado_sucesso?faces-redirect=true";
+	}
+
+	public String remover() {
+		infracaoService.remove(infracao);
+		
+		return "infracao-removido_sucesso?faces-redirect=true";
+	}
+
+	public String novoAgente() {
+		infracao = new Infracao();
+		infracoes = null;
+		infracoes = infracaoService.todos();
+		return "cadastro-infracao?faces-redirect=true";
 	}
 
 	public List<Agente> completar(String nome) {
@@ -89,22 +112,46 @@ public class InfracaoBean implements Serializable {
 		return results;
 	}
 
-	public void cadastrar() {
-		Agente agente = getAgente(agenteId);
+	public String cadastrar() {
 		LocalInfracao local = getLocal(localId);
 		TipoInfracao tipo = getTipo(tipoId);
 		Veiculo v = procuraVeiculo(veiculoId);
 
 		infracao.setLocal(local);
 		infracao.setTipo(tipo);
-		infracao.setAgente(agente);
 		infracao.setVeiculo(v);
 
 		infracaoService.incluir(infracao);
+		infracoes = null;
+		return "infracao-sucesso?faces-redirect=true";
 	}
 
 	public Long getAgenteId() {
 		return agenteId;
+	}
+
+	public List<Agente> getAgentes() {
+		return agentes;
+	}
+
+	public void setAgentes(List<Agente> agentes) {
+		this.agentes = agentes;
+	}
+
+	public List<Veiculo> getVeiculos() {
+		return veiculos;
+	}
+
+	public void setVeiculos(List<Veiculo> veiculos) {
+		this.veiculos = veiculos;
+	}
+
+	public String getNmAgente() {
+		return nmAgente;
+	}
+
+	public void setNmAgente(String nmAgente) {
+		this.nmAgente = nmAgente;
 	}
 
 	public void setAgenteId(Long agenteId) {

@@ -5,10 +5,46 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
+	<ui:define name="titulo">Listar Infrações</ui:define>
+
 	<ui:define name="corpo">
-		<p:panel>
-			<h:form>
-				<h:outputText value="Cadastrar infração" />
+		<p:dataTable id="tableInfracoes" value="#{infracaoBean.infracoes}"
+			var="inf">
+			<p:column>
+				<p:commandButton icon="ui-icon-pencil" id="btEdita"
+					onclick="PF('dlg2').show()">
+					<f:setPropertyActionListener target="#{infracaoBean.infracao}"
+						value="#{inf}" />
+				</p:commandButton>
+
+				<p:commandButton icon="ui-icon-closethick" id="btCancela"
+					action="#{infracaoBean.remover()}" update="tableInfracoes">
+					<f:setPropertyActionListener target="#{infracaoBean.infracao}"
+						value="#{inf}" />
+				</p:commandButton>
+			</p:column>
+			
+			<p:column headerText="ID">
+				<h:outputLabel value="#{inf.id}" />
+			</p:column>
+			
+			<p:column headerText="Nome do Agente">
+				<h:outputLabel value="#{inf.agente}" />
+			</p:column>
+			<p:column headerText="Local">
+				<h:outputLabel value="#{inf.local.descricaoLocalInfracao}" />
+			</p:column>
+			<p:column headerText="Placa">
+				<h:outputLabel value="#{inf.placa}" />
+			</p:column>
+			<p:column headerText="Veículo">
+				<h:outputLabel value="#{inf.velocidade}" />
+			</p:column>
+		</p:dataTable>
+
+		<p:dialog header="Atualizar Infração" widgetVar="dlg2" modal="true"
+			height="400" width="450">
+			<h:form id="fmDialogInf">
 				<p:panelGrid columns="2">
 
 					<p:outputLabel for="t" value="Tipo: " />
@@ -40,14 +76,10 @@
 
 				</p:panelGrid>
 
-				<br />
-
-				<p:commandButton value="Cadastrar" icon="ui-icon-disk"
-					action="#{infracaoBean.cadastrar()}" />
-
+				<p:commandButton value="Salvar" icon="ui-icon-disk"
+					action="#{infracaoBean.atualizar()}" />
 			</h:form>
-
-		</p:panel>
+		</p:dialog>
 
 	</ui:define>
 </ui:composition>

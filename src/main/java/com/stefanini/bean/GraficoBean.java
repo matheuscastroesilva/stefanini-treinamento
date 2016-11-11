@@ -15,7 +15,7 @@ import com.stefanini.service.AgenteService;
 
 @Named
 @SessionScoped
-public class AgenteBean implements Serializable {
+public class GraficoBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
